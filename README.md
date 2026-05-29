@@ -2,8 +2,7 @@
 
 This repository contains the code, intermediate data, figures, and LaTeX source for
 **Li et al. (2026), "Boötes III: Active Tidal Disruption Confirmed with $S^5$ and Gaia DR3"**.
-The accompanying paper is available in `paper_aas/` (AAS Journals format, aastex631)
-and `paper_ojap/` (Open Journal of Astrophysics format, openjournal.cls).
+The paper itself is hosted separately on arXiv (and at the journal); this repository contains only the analysis pipeline and figures.
 
 ## Layout
 
@@ -11,10 +10,8 @@ and `paper_ojap/` (Open Journal of Astrophysics format, openjournal.cls).
 boo3/
 ├── data/             ← raw input catalogues used by the notebooks
 ├── notebooks/        ← analysis notebooks + heavy-compute Python scripts
-├── output/           ← intermediate products (GMM chains, orbit + spray caches)
-├── figures/          ← final paper figures (PDF)
-├── paper_aas/        ← LaTeX (aastex631) — for AAS journal submission
-└── paper_ojap/       ← LaTeX (openjournal) — for Open Journal of Astrophysics
+├── output/           ← intermediate products (GMM chains, orbit + spray caches; regenerable)
+└── figures/          ← final paper figures (PDF)
 ```
 
 ## Reproducing the analysis
