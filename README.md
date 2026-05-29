@@ -51,9 +51,9 @@ expected summer 2026). The notebook scripts that consume `cat_s5_public_dr2.0_be
 will be runnable once that release goes public; in the meantime they document
 the queries and filters applied.
 
-The N-body simulation snapshot used for the velocity-gradient comparison in
-§6.2 of the paper is not redistributed with this repository; please contact the
-authors for access.
+The N-body simulation snapshot (`data/boo3_v1_1e6.0Msun_McMillan.h5`, ~92 MB)
+used for the velocity-gradient comparison in §6.2 of the paper is not included
+in this repository due to its size; please contact the authors for access.
 
 ## Citing this work
 
