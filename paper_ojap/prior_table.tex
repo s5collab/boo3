@@ -1,0 +1,26 @@
+\begin{deluxetable}{lll}
+\tablecaption{Priors used in the Boo~III GMM fit (Section~\ref{section:membership}). \label{tab:priors}}
+\tablewidth{0pt}
+\tablehead{
+\colhead{Parameter} & \colhead{Description} & \colhead{Prior}
+}
+\startdata
+\multicolumn{3}{c}{\textit{Galaxy component}} \\
+\hline
+$f_{\rm mem}$                          & galaxy mixing fraction                        & $\mathcal{U}(0,\,1)$                         \\
+$\bar v_{\rm hel}$                     & systemic $v_{\rm hel}$ [km\,s$^{-1}$]           & $\mathcal{U}(170,\,210)$                     \\
+$\log_{10}\sigma_v$                    & log intrinsic $v_{\rm hel}$ dispersion         & $\mathcal{U}(-2.0,\,+1.3)$                   \\
+$\overline{[\mathrm{Fe/H}]}$           & mean metallicity [dex]                          & $\mathcal{U}(-3.5,\,-1.2)$                   \\
+$\log_{10}\sigma_{[\mathrm{Fe/H}]}$    & log intrinsic [Fe/H] dispersion                 & $\mathcal{U}(-2.0,\,+0.3)$                   \\
+$\bar\mu_\alpha\cos\delta$             & systemic $\mu_\alpha\cos\delta$ [\pmUnits]      & $\mathcal{U}(-2.0,\,-0.5)$                   \\
+$\bar\mu_\delta$                       & systemic $\mu_\delta$ [\pmUnits]                & $\mathcal{U}(-1.5,\, 0.0)$                   \\
+\hline
+\multicolumn{3}{c}{\textit{Milky-Way background component}} \\
+\hline
+$\bar v^{\rm bg}$                      & mean $v_{\rm hel}$ [km\,s$^{-1}$]               & $\mathcal{U}(-600,\,+600)$                   \\
+$\log_{10}\sigma_{v}^{\rm bg}$         & log $v_{\rm hel}$ dispersion                     & $\mathcal{U}(+1.0,\,+2.5)$                   \\
+$\overline{[\mathrm{Fe/H}]}^{\rm bg}$  & mean [Fe/H] [dex]                                & $\mathcal{U}(-5.0,\,\,0.0)$                  \\
+$\log_{10}\sigma_{[\mathrm{Fe/H}]}^{\rm bg}$ & log [Fe/H] dispersion                       & $\mathcal{U}(-1.0,\,+0.3)$                   \\
+\enddata
+\tablecomments{Weakly informative priors. The four galaxy parameter ranges ($\bar v_{\rm hel}$, $\bar\mu_\alpha\cos\delta$, $\bar\mu_\delta$, $\overline{[\mathrm{Fe/H}]}$) are the box-cut limits of Eqs.~\ref{eq:boxcut_rv}--\ref{eq:boxcut_feh} (the orange selection box drawn in Figure~\ref{fig:main_members}); the background mean ranges span the full input-box of Section~\ref{section:input_sample}. All dispersion priors are log-uniform (Jeffreys' prior for a scale parameter).}
+\end{deluxetable}

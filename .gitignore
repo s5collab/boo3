@@ -1,0 +1,28 @@
+# === Build / temp artefacts ===
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.synctex.gz
+*Notes.bib
+__pycache__/
+.DS_Store
+.ipynb_checkpoints/
+
+# === Large derived data (re-derivable by running the code; on Zenodo) ===
+output/orbit_McMillan17_trajectories.npz
+output/orbit_MWPotential2014_trajectories.npz
+output/orbit_per_component_trajectories.npz
+output/*_trajectories.npz
+
+# === Large input data (on Zenodo) ===
+data/boo3_v1_1e6.0Msun_McMillan.h5
+data/vasiliev2021_sgr_catalog.dat
+data/cat_s5_public_dr2.0_beta0.fits
+
+# === Editor / scratch ===
+*.swp
+*.bak
+.vscode/
+.idea/
