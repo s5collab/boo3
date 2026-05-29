@@ -6,7 +6,11 @@ Run BEFORE `01_members_gmm_orbits.ipynb` (the notebook only loads + plots).
 What it does:
   1. Builds the 120-star input catalog from S5 DR2 with the new
      ellipse-centroid (RA = 209.5567, Dec = 26.5529).  Writes
-     `output/boo3_input_127.csv` (filename kept for back-compat).
+     `output/boo3_input_120.csv`.  If `data/boo3_input_120.csv` already
+     exists (e.g. as distributed in the public repository), this build
+     step is SKIPPED and the catalog is loaded directly from disk --
+     allowing the rest of the pipeline to be re-run without access to the
+     non-public S5 DR2 catalog.
   2. Runs the 11-parameter GMM mixture model with emcee (64 walkers x
      8000 steps, 2000 burn-in).  Writes `output/boo3_gmm_samples.h5`.
   3. Computes per-star membership probabilities and writes
@@ -40,7 +44,8 @@ OUT_DIR.mkdir(exist_ok=True)
 S5_DR2_FITS = DATA_DIR / "cat_s5_public_dr2.0_beta0.fits"
 RRL_CSV     = DATA_DIR / "gaiadr3_RRLyrae_boo3_5deg.csv"
 
-INPUT_CSV   = OUT_DIR / "boo3_input_127.csv"
+INPUT_CSV       = OUT_DIR / "boo3_input_120.csv"
+INPUT_CSV_REPO  = DATA_DIR / "boo3_input_120.csv"  # public, distributed in this repo
 SAMPLES_H5  = OUT_DIR / "boo3_gmm_samples.h5"
 MEMSHIP_CSV = OUT_DIR / "boo3_gmm_membership.csv"
 
@@ -292,9 +297,20 @@ def run_emcee(df_in, n_walkers=64, n_steps=8000, n_burn=2000, seed=42):
 # ===========================================================================
 def main():
     print("=" * 70)
-    print("01_compute_gmm.py — building 120-star input catalog")
+    print("01_compute_gmm.py — input catalog setup")
     print("=" * 70)
-    df_in = build_input_catalog()
+    if INPUT_CSV_REPO.exists():
+        print(f"  loading public input catalog from {INPUT_CSV_REPO}")
+        df_in = pd.read_csv(INPUT_CSV_REPO)
+        df_in["source_id"] = df_in["source_id"].astype("int64")
+        print(f"  {len(df_in)} stars loaded")
+    elif S5_DR2_FITS.exists():
+        print(f"  S5 DR2 catalog available; building input catalog from scratch")
+        df_in = build_input_catalog()
+    else:
+        raise FileNotFoundError(
+            f"Neither {INPUT_CSV_REPO} (public input catalog) nor "
+            f"{S5_DR2_FITS} (raw S5 DR2 catalog) found; cannot proceed.")
 
     print()
     print("=" * 70)

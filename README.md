@@ -55,6 +55,21 @@ The N-body simulation snapshot (`data/boo3_v1_1e6.0Msun_McMillan.h5`, ~92 MB)
 used for the velocity-gradient comparison in §6.2 of the paper is not included
 in this repository due to its size; please contact the authors for access.
 
+## Quickstart — running the GMM without S^5 DR2 access
+
+The 120-star input catalog used to fit the Gaussian mixture model is
+distributed directly in this repository (`data/boo3_input_120.csv`).  This
+means anyone can re-run the GMM membership analysis and reproduce the 21
+high-probability Boo III members without needing access to the S^5 DR2 raw
+catalogue:
+
+```sh
+python notebooks/01_compute_gmm.py
+```
+
+The script automatically loads `data/boo3_input_120.csv` if it is present and
+skips the (S^5-DR2-dependent) build-from-scratch step.
+
 ## Citing this work
 
 ```bibtex
