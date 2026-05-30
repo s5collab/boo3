@@ -55,20 +55,28 @@ The N-body simulation snapshot (`data/boo3_v1_1e6.0Msun_McMillan.h5`, ~92 MB)
 used for the velocity-gradient comparison in §6.2 of the paper is not included
 in this repository due to its size; please contact the authors for access.
 
-## Quickstart — running the GMM without S^5 DR2 access
+## Key data products released here
 
-The 120-star input catalog used to fit the Gaussian mixture model is
-distributed directly in this repository (`data/boo3_input_120.csv`).  This
-means anyone can re-run the GMM membership analysis and reproduce the 21
-high-probability Boo III members without needing access to the S^5 DR2 raw
-catalogue:
+Two data products from the paper are distributed in this repository so that
+the membership analysis can be inspected and reproduced without access to the
+non-public S$^5$ DR2 raw catalogue:
+
+| File | Contents |
+|---|---|
+| **`output/boo3_21mem_machine_readable.csv`** | The 21 high-probability Boötes III RGB members from the GMM fit ($P_{\rm mem} > 0.95$) — the same stars listed in Table 3 of the paper. Columns: Gaia DR3 `source_id`, sky position (`ra`, `dec`, plus tangent-plane offsets from the new centroid), dereddened DECam $g_0, r_0$, $S^5$ heliocentric RV and error, $S^5$ [Fe/H] and error, Gaia DR3 proper motions and errors with the correlation coefficient, $S^5$ S/N and the GMM-input quality flag, and the median GMM membership probability with its 16/84-percentile interval. This is the machine-readable companion intended for AAS submission. |
+| **`data/boo3_input_120.csv`** | The 120-star input catalog to which the Gaussian mixture model is fit — the small post-cut "stamp" of $S^5$ DR2 around Boötes III that survives our quality + ellipse + PM-box cuts. Although $S^5$ DR2 itself is not yet public (release expected summer 2026, T. S. Li et al., in preparation), distributing this stamp lets anyone re-run the GMM and reproduce the 21-member list using only the public code in this repository. |
+
+To reproduce the membership analysis end-to-end:
 
 ```sh
 python notebooks/01_compute_gmm.py
 ```
 
 The script automatically loads `data/boo3_input_120.csv` if it is present and
-skips the (S^5-DR2-dependent) build-from-scratch step.
+skips the (S$^5$-DR2-dependent) build-from-scratch step.  The 21-member list
+written to `output/boo3_21mem_machine_readable.csv` is then produced by the
+companion notebook `notebooks/01_members_gmm_orbits.ipynb` (cell 8), alongside
+the LaTeX Table 3 in the paper.
 
 ## Citing this work
 
